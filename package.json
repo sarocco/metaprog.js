@@ -1,0 +1,24 @@
+{
+	"name": "metaprog",
+	"version": "0.0.1",
+	"description": "Metaprogramming experiment in JavaScript",
+	"main": "metaprog.js",
+	"keywords": [
+		"metaprogramming"
+	],
+	"author": "leonardo.val@creatartis.com",
+	"license": "MIT",
+	"homepage": "https://github.com/LeonardoVal/metaprog.js#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/LeonardoVal/metaprog.js.git"
+	},
+	"bugs": {
+		"url": "https://github.com/LeonardoVal/metaprog.js/issues"
+	},
+	"scripts": {},
+	"dependencies": {
+		"escodegen": "^1.9.0",
+		"esprima": "^4.0.0"
+	}
+}

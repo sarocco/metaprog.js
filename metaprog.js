@@ -14,6 +14,7 @@ function main() {
 
 function searchAstBlock(source) {
 	var inside ="";
+	var cont = 0;
 	//console.log(source);
 	var lowerThan = source.indexOf("[<")+2; //se suman 2 indices dado que el indexOf se para antes de el indice que estoy buscando
 	var greaterThan = source.lastIndexOf(">]");
@@ -21,12 +22,20 @@ function searchAstBlock(source) {
 		return source;
 	}else{
 		inside = searchAstBlock(source.substr(lowerThan, greaterThan-lowerThan));//inside es el codigo dentro de [<inside>]
+		console.log(inside)
 	}
-	var regularExp = /(\[<|>\])/;
-	var toArray = source.split(regularExp);//separa el texto en base a la expresion regular
 	ast = esprima.parse(inside);
+	var regularExp = /((?:(\[<))|(?:(>\])))/;
+	var toArray = source.split(regularExp);//separa el texto en base a la exp regular
 	var string = JSON.stringify(ast, null, '\t');
-	var result = toArray[0]+string+toArray[4];
+
+	var cont =+1
+	//console.log(cont);
+	console.log(toArray[0]);
+	console.log(toArray[1]);
+	console.log(toArray[2]);
+	console.log(toArray[3]);
+	var result = toArray[0]+string;
 	return result;
 }
 

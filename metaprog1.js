@@ -26,7 +26,7 @@ function searchAstBlock(source) {
   }
 
 	tree = esprima.parse(inside);
-	var regularExp = /((?:(\[>))|(?:(<\])))/;
+	var regularExp = /((?:(\[>))|(?:(<\])))/; //\[[<>]|[<>]\]
 	var toArray = source.split(regularExp);//separa el texto en base a la exp regular
 	var string = JSON.stringify(tree, null, '\t');
 

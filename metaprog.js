@@ -21,9 +21,10 @@ function searchAstBlock(source) {
 		return source;
 	}else{
 		inside = searchAstBlock(source.substr(lowerThan, greaterThan-lowerThan));//inside es el codigo dentro de [<inside>]
-		console.log(inside)
 	}
 	tree = esprima.parse(inside);
+	//var nuevaCadena = source.replace(inside,JSON.stringify(tree, null, '\t'));
+	//console.log(nuevaCadena);
 	var regularExp = /((?:(\[<))|(?:(>\])))/;
 	var toArray = source.split(regularExp);//separa el texto en base a la exp regular
 	var string = JSON.stringify(tree, null, '\t');

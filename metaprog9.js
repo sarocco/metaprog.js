@@ -1,9 +1,6 @@
 var fs = require('fs'),
 	esprima = require('esprima'),
 	escodegen = require('escodegen');
-  var map = {};
-  var nivelInicial=0;
-
 
 function main() {
 	var stdin = process.stdin,
@@ -14,19 +11,24 @@ function main() {
 }
 
 function searchAstBlock(source){
-	var regularExp = /\[<((?:(?!\[[<>]).)*?)[<>]\]/g,
-		r = source.replace(regularExp , function (match, code){
-			if (match.startsWith("[<")){
-				ast = esprima.parse(code);
-				return JSON.stringify(ast.body[0]);
-			}else{
-				codeBlock = eval(code);
-				codigo = escodegen.generate(codeBlock)
-				return codigo;
-			}
-
-	});
-	console.log(r);
+	var c;
+	do{
+		c = 0;
+		var regularExp = /\[[<>]((?:(?!\[[<>]).)*?)[<>]\]/gm,
+			source = source.replace(regularExp , function (match, code){
+				if (match.startsWith("[<")){
+					ast = esprima.parse(code);
+					c++;
+					return JSON.stringify(ast.body[0]);
+				}else{
+					codeBlock = eval(code);
+					codigo = escodegen.generate(codeBlock);
+					c++;
+					return codigo;
+				}
+		});
+	} while (c>0);
+	console.log(source);
 }
 
 main()

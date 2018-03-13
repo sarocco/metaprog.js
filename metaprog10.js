@@ -6,9 +6,9 @@ function main() {
 	var stdin = process.stdin,
 		stdout = process.stdout,
 		source = fs.readFileSync(stdin.fd, { encoding: 'utf8' });
-    var regularExp1 = /(\/\*[\w\'\s\r\n\*]*\*\/)|(\/\/[\w\s\']*)|(\<![\-\-\s\w\>\/]*\>)/gm,
-		sourceWC = source.replace(regularExp1,'');
-		console.log(sourceWC);
+    var removeComments = /(\/\*[\w\'\s\r\n\*]*\*\/)|(\/\/[\w\s\']*)|(\<![\-\-\s\w\>\/]*\>)|(\n)/gm,
+		sourceWC = source.replace(removeComments,'');
+		//console.log(sourceWC);
 		astBlock = searchAstBlock(sourceWC) ;
 }
 
